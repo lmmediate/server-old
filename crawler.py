@@ -189,7 +189,7 @@ def init_items_conditions(max_pages):
         for p in products:
             try:
                 if 'conditions' in str(p.contents[5]):
-                    conditions.append(p.contents[5].text)
+                    conditions.append(re.sub('\s+', ' ', p.contents[5].text.strip().replace('\r', '').replace('\n', '')))
                 else:
                     raise Exception
             except:
