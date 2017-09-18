@@ -223,12 +223,48 @@ def write_results():
     with open('dixy_items.json', 'w') as F:
         json.dump(objects, F)
 
+@log
 def run_once():
     start_crawling()
     return [x.__dict__ for x in items]
 
-start_crawling()
-write_results()
+
+@log
+def notify_via_email(msg):
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login('immediate.tm@gmail.com', 'fucksociety')
+    server.sendmail('immediate.tm@gmail.com',
+                    'kupriyanovkirill@gmail.com', msg)
+    server.quit()
+
+
+# Will run permanently on server.
+#
+@log
+def track_changes():
+    max_pages = get_max_pages(url_core)
+    current_number = get_max_items(max_pages)
+    while True:
+        # print('..........tracking changes..........')
+        time.sleep(60)
+        max_pages = get_max_pages(url_core)
+        new_number = get_max_items(max_pages)
+        if new_number != current_number:
+            # print('..........changes occurred. restarting a crawler..........')
+            start_crawling()
+            write_results()
+            notify_via_email('Some changes happened to dixy catalogue:\n'
+                             'There were {} items, and now there are {} of them!'
+                             .format(current_number, new_number))
+            # print('..........notified via email..........')
+            current_number = new_number
+            time.sleep(3600)
+
+#start_crawling()
+#write_results()
+
+track_changes()
 
 
 # EOF
