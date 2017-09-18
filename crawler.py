@@ -10,7 +10,8 @@ import smtplib
 
 def log(func):
     def log_and_call(*args, **kwargs):
-        print('% {func} {args} {kwargs}'.format(**locals()))
+        with open ('log.txt', 'a') as log_file:
+            log_file.write('% {func} {args} {kwargs}\n'.format(**locals()))
         return func(*args, **kwargs)
     return log_and_call
 
@@ -247,7 +248,7 @@ def track_changes():
     current_number = get_max_items(max_pages)
     while True:
         # print('..........tracking changes..........')
-        time.sleep(60)
+        time.sleep(1800)
         max_pages = get_max_pages(url_core)
         new_number = get_max_items(max_pages)
         if new_number != current_number:
