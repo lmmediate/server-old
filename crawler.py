@@ -137,7 +137,10 @@ def init_items_discounts(max_pages):
         products = soup.find_all('div', class_='elem-product__price-container')
         for p in products:
             try:
-                discounts.append(p.contents[1].contents[0].text[1:] + '%')
+                discnt = p.contents[1].contents[0].text
+                if '+' not in discnt:
+                    discnt = p.contents[1].contents[0].text[1:] + '%'
+                discounts.append(discnt)
             except:
                 discounts.append('NO_DISCOUNT_INFO')
         current_page += 1
