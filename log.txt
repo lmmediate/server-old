@@ -1,0 +1,13 @@
+% <function get_max_pages at 0x7faf62c5aa60> ('https://dixy.ru/akcii/skidki-nedeli/',) {}
+% <function get_max_pages at 0x7f8eb3894a60> ('https://dixy.ru/akcii/skidki-nedeli/',) {}
+% <function start_crawling at 0x7f8eb38377b8> () {}
+% <function get_max_pages at 0x7f8eb3894a60> ('https://dixy.ru/akcii/skidki-nedeli/',) {}
+% <function init_items_categs at 0x7f8eb38999d8> (10,) {}
+% <function init_items_imgs at 0x7f8ebaf929d8> (10,) {}
+% <function init_items_old_price at 0x7f8eb3837158> (10,) {}
+% <function init_items_new_prices at 0x7f8eb3837268> (10,) {}
+% <function init_items_discounts at 0x7f8eb3837378> (10,) {}
+% <function init_items_names at 0x7f8eb3837488> (10,) {}
+% <function init_items_dates at 0x7f8eb3837598> (10,) {}
+% <function init_items_conditions at 0x7f8eb38376a8> (10,) {}
+% <function write_results at 0x7f8eb38378c8> () {}

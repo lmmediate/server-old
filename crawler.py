@@ -29,6 +29,7 @@ class Item:
 
 items = []
 url_core = 'https://dixy.ru/akcii/skidki-nedeli/'
+json_file = './dixy_items.json'
 
 @log
 def get_max_pages(url):
@@ -239,6 +240,11 @@ def notify_via_email(msg):
                     'kupriyanovkirill@gmail.com', msg)
     server.quit()
 
+def get_day_item(file):
+    with open(file) as json_data:
+        d = json.load(json_data)
+        return d[0]['name']
+
 
 # Will run permanently on server.
 #
@@ -246,12 +252,14 @@ def notify_via_email(msg):
 def track_changes():
     max_pages = get_max_pages(url_core)
     current_number = get_max_items(max_pages)
+    current_day_item = get_day_item(json_file)
     while True:
         # print('..........tracking changes..........')
         time.sleep(1800)
         max_pages = get_max_pages(url_core)
         new_number = get_max_items(max_pages)
-        if new_number != current_number:
+        new_day_item = get_day_item(json_file)
+        if new_number != current_number or new_day_item != current_day_item:
             # print('..........changes occurred. restarting a crawler..........')
             start_crawling()
             write_results()
@@ -260,6 +268,7 @@ def track_changes():
                              .format(current_number, new_number))
             # print('..........notified via email..........')
             current_number = new_number
+            current_day_item = new_day_item
             time.sleep(3600)
 
 #start_crawling()
