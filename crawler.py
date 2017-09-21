@@ -252,10 +252,11 @@ def get_day_item(file):
 def track_changes():
     max_pages = get_max_pages(url_core)
     current_number = get_max_items(max_pages)
+    start_crawling()
+    write_results()
     current_day_item = get_day_item(json_file)
     while True:
         # print('..........tracking changes..........')
-        time.sleep(1800)
         max_pages = get_max_pages(url_core)
         new_number = get_max_items(max_pages)
         new_day_item = get_day_item(json_file)
@@ -270,6 +271,7 @@ def track_changes():
             current_number = new_number
             current_day_item = new_day_item
             time.sleep(3600)
+        time.sleep(1800)
 
 #start_crawling()
 #write_results()
