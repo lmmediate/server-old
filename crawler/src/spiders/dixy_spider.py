@@ -22,6 +22,8 @@ class QuotesSpider(scrapy.Spider):
                 # TODO: Add other selectors.
                 #
                 'name': proc.process(item.xpath(sel.name).extract_first()),
+                'category': proc.process(item.xpath(sel.category).extract_first()),
+                'img': sel.url_core + proc.process(item.xpath(sel.img).extract_first()),
             }
 
         next_page = response.xpath(sel.next_page).extract_first()
