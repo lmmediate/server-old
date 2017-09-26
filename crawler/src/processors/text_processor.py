@@ -1,10 +1,11 @@
 #coding=utf-8
 
 import re
-
 def remove_junk(s):
     s = s.strip()
-    s = re.sub(r'&.+;', '', s)
+    # Dixy's wrong non-breaking space
+    s = re.sub(r'(&nbsp;?)+', ' ', s)
+    # s = re.sub(r'&.+;', '', s)
     s = re.sub(r'\*+', '', s)
     s = re.sub(r'\s+', ' ', s)
     return s
