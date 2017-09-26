@@ -16,6 +16,9 @@ class QuotesSpider(scrapy.Spider):
     name = 'dixy'
     start_urls = sel.urls
 
+    def concat_prices(self, left, right):
+        return float(str(left) + '.' + str(right))
+
     def parse(self, response):
         for item in response.xpath(sel.item):
             yield {
@@ -23,7 +26,10 @@ class QuotesSpider(scrapy.Spider):
                 #
                 'name': proc.process(item.xpath(sel.name).extract_first()),
                 'category': proc.process(item.xpath(sel.category).extract_first()),
-                'img': sel.url_core + proc.process(item.xpath(sel.img).extract_first()),
+                'img_url': sel.url_core + item.xpath(sel.img).extract_first(),
+                'new_price': self.concat_prices(item.xpath(sel.new_price_left).extract_first(), item.xpath(sel.new_price_right).extract_first())
+
+ 
             }
 
         next_page = response.xpath(sel.next_page).extract_first()
