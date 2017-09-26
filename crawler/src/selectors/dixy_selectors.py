@@ -8,12 +8,25 @@ url_core = 'https://dixy.ru'
 
 # Item attributes.
 #
+
+# Root node.
+#
 item = '//div[contains(@class, "elem-product ")]'
-name = 'div[@class="elem-product__description"]/div[contains(@class, "product-name")]/text()'
-category = '//div[@class="product-category"]/child::text()[2]'
-img = 'div[@class="elem-product__info"]/div[@class="elem-product__image"]/img/@src'
-new_price_left = 'div[@class="elem-product__info"]/div[@class="elem-product__price-container"]/div[@class="elem-product__prices"]/div[@class="price-left"]/span/text()'
-new_price_right = 'div[@class="elem-product__info"]/div[@class="elem-product__price-container"]/div[@class="elem-product__prices"]/div[@class="price-right"]/span/text()'
+
+# Inner repetitive divs.
+#
+description = 'div[@class="elem-product__description"]'
+info = 'div[@class="elem-product__info"]'
+price_container = info + '/div[@class="elem-product__price-container"]'
+prices = price_container +'/div[@class="elem-product__prices"]'
+
+img = info + '/div[@class="elem-product__image"]/img/@src'
+name = description + '/div[contains(@class, "product-name")]/text()'
+category = description + '/div[@class="product-category"]/child::text()[2]'
+new_price_left = prices + '/div[@class="price-left"]/span/text()'
+new_price_right = prices + '/div[@class="price-right"]/span/text()'
+old_price_left = prices + '/div[@class="price-right"]/div/span[@class="price-full__integer"]/text()'
+old_price_right = prices + '/div[@class="price-right"]/div/span[@class="price-full__float"]/text()'
 
 # Pagination selector.
 #
