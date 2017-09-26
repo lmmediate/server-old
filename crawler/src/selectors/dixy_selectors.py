@@ -2,7 +2,7 @@
 
 # Start urls.
 #
-urls = ['https://dixy.ru/akcii/skidki-nedeli/']
+urls = ['https://dixy.ru/akcii/skidki-nedeli']
 url_core = 'https://dixy.ru'
 
 
@@ -27,6 +27,7 @@ new_price_left = prices + '/div[@class="price-left"]/span/text()'
 new_price_right = prices + '/div[@class="price-right"]/span/text()'
 old_price_left = prices + '/div[@class="price-right"]/div/span[@class="price-full__integer"]/text()'
 old_price_right = prices + '/div[@class="price-right"]/div/span[@class="price-full__float"]/text()'
+discounts = price_container + '/div[@class="discount"]/span[1]/text()' + ' | ' + price_container + '/div[@class="just-now"]/text()'
 
 # Pagination selector.
 #

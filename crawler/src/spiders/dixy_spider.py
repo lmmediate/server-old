@@ -16,8 +16,6 @@ class QuotesSpider(scrapy.Spider):
     name = 'dixy'
     start_urls = sel.urls
 
-    def concat_prices(self, left, right):
-        return float(str(left) + '.' + str(right))
 
     def parse(self, response):
         for item in response.xpath(sel.item):
@@ -27,10 +25,11 @@ class QuotesSpider(scrapy.Spider):
                 'name': proc.process(item.xpath(sel.name).extract_first()),
                 'category': proc.process(item.xpath(sel.category).extract_first()),
                 'img_url': sel.url_core + item.xpath(sel.img).extract_first(),
-                'new_price': self.concat_prices(proc.process(item.xpath(sel.new_price_left).extract_first(default='0')),
-                    proc.process(item.xpath(sel.new_price_right).extract_first(default='0'))),
-                'old_price': self.concat_prices(proc.process(item.xpath(sel.old_price_left).extract_first(default='0')), 
-                    proc.process(item.xpath(sel.old_price_right).extract_first(default='0'))),
+                'new_price': proc.concat(item.xpath(sel.new_price_left).extract_first(default='0'),
+                    item.xpath(sel.new_price_right).extract_first(default='0'), '.'),
+                'old_price': proc.concat(item.xpath(sel.old_price_left).extract_first(default='0'), 
+                    item.xpath(sel.old_price_right).extract_first(default='0'), '.'),
+                'discount': proc.process(item.xpath(sel.discounts).extract_first())
             }
 
         next_page = response.xpath(sel.next_page).extract_first()
