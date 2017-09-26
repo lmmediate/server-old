@@ -31,6 +31,7 @@ class QuotesSpider(scrapy.Spider):
                     item.xpath(sel.old_price_right).extract_first(default='0'), '.'),
                 'discount': proc.process(item.xpath(sel.discount).extract_first()),
                 'date': proc.process(item.xpath(sel.date).extract_first()),
+                'condition': proc.process(item.xpath(sel.condition).extract_first(default='-')),
             }
 
         next_page = response.xpath(sel.next_page).extract_first()

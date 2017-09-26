@@ -28,6 +28,7 @@ new_price_right = prices + '/div[@class="price-right"]/span/text()'
 old_price_left = prices + '/div[@class="price-right"]/div/span[@class="price-full__integer"]/text()'
 old_price_right = prices + '/div[@class="price-right"]/div/span[@class="price-full__float"]/text()'
 discount = price_container + '/div[contains(@class,"discount")]/span[@class="value"]/text()' + ' | ' + price_container + '/div[@class="just-now"]/text()'
+condition = price_container + '/div[contains(@class,"promopack")]/div[@class="text"]/text()'
 date = 'div[contains(@class, "elem-badge-cornered")]/text()'
 
 
