@@ -3,7 +3,8 @@
 import re
 def remove_junk(s):
     s = s.strip()
-    # Dixy's wrong non-breaking space
+    # Dixy's wrong non-breaking space.
+    #
     s = re.sub(r'(&nbsp;?)+', ' ', s)
     # s = re.sub(r'&.+;', '', s)
     s = re.sub(r'\*+', '', s)

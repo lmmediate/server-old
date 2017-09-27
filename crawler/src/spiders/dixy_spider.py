@@ -20,8 +20,6 @@ class QuotesSpider(scrapy.Spider):
     def parse(self, response):
         for item in response.xpath(sel.item):
             yield {
-                # TODO: Add other selectors.
-                #
                 'name': proc.process(item.xpath(sel.name).extract_first()),
                 'category': proc.process(item.xpath(sel.category).extract_first()),
                 'img_url': sel.url_core + item.xpath(sel.img).extract_first(),
