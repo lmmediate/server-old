@@ -34,7 +34,8 @@ date = 'div[contains(@class, "elem-badge-cornered")]/text()'
 
 # Pagination selector.
 #
-next_page = '//li[@class="next"]/a/@href'
+# next_page = '//li[@class="next"]/a/@href'
+next_page = '//div[contains(@class, "elem-pagination")]/a[contains(@class, "elem-pagination__btn--next")]/@href'
 
 
 # EOF
