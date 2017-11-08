@@ -28,5 +28,12 @@ router.get('/sales/categories', function (req, res) {
   res.json(data);
 });
 
+router.get('/sales/info', function (req, res) {
+  var data = require(dataPath);
+  var count = data.length;
+  var numPages = Math.ceil(count / 30);
+  res.json({ count: count, numPages: numPages });
+});
+
 
 module.exports = router;
