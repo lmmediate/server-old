@@ -1,19 +1,51 @@
 package ru.easysales;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
+@Entity
+@Table(name = "item")
 public class Item {
+
+    @Id
+    @Column(name = "id")
+    private int id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "category")
     private String category;
-    private String imgUrl;
-    //   private Image image;
-    private double oldPrice;
-    private double newPrice;
-    private double discount;
+    @Column(name = "image_url")
+    private String imageUrl;
+    @Column(name = "old_price")
+    private Double oldPrice;
+    @Column(name = "new_price")
+    private Double newPrice;
+    @Column(name = "discount")
+    private Double discount;
+    @Column(name = "date_in")
     private Date dateIn;
+    @Column(name = "date_out")
     private Date dateOut;
+    @Column(name = "crawl_date")
     private Date crawlDate;
+    @Column(name = "condition")
     private String condition;
+
+    //   private Image image;
+
+    public Item() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -31,35 +63,35 @@ public class Item {
         this.category = category;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    public double getOldPrice() {
+    public Double getOldPrice() {
         return oldPrice;
     }
 
-    public void setOldPrice(double oldPrice) {
+    public void setOldPrice(Double oldPrice) {
         this.oldPrice = oldPrice;
     }
 
-    public double getNewPrice() {
+    public Double getNewPrice() {
         return newPrice;
     }
 
-    public void setNewPrice(double newPrice) {
+    public void setNewPrice(Double newPrice) {
         this.newPrice = newPrice;
     }
 
-    public double getDiscount() {
+    public Double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(Double discount) {
         this.discount = discount;
     }
 
@@ -93,5 +125,22 @@ public class Item {
 
     public void setCondition(String condition) {
         this.condition = condition;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", oldPrice=" + oldPrice +
+                ", newPrice=" + newPrice +
+                ", discount=" + discount +
+                ", dateIn=" + dateIn +
+                ", dateOut=" + dateOut +
+                ", crawlDate=" + crawlDate +
+                ", condition='" + condition + '\'' +
+                '}';
     }
 }
