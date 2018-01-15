@@ -8,11 +8,12 @@
     <session-factory>
 
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://46.17.44.125:5432/easysales?currentSchema=discounts</property>
+        <property name="connection.url">jdbc:postgresql://46.17.44.125:5432/easysales</property>
         <property name="connection.username">hes</property>
         <property name="connection.password">shopdiscounts</property>
         <property name="dialect">org.hibernate.dialect.PostgreSQL95Dialect</property>
         <property name="show_sql">true</property>
+        <property name="current_session_context_class">thread</property>
 
     </session-factory>
 
