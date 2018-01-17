@@ -12,7 +12,7 @@ public class ItemResource {
 
     @GetMapping("/sales")
     public Iterable<Item> getItems() {
-        return repository.findAll();
+        return repository.getCurrentItems();
     }
 
     @PostMapping("/sales")
