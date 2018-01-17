@@ -1,4 +1,4 @@
-package ru.easysales.server;
+package ru.easysales.server.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
