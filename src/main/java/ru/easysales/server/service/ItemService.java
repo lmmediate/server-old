@@ -34,8 +34,18 @@ public class ItemService {
 
     public Object getInfo() {
         return new Object() {
+            public static final int ITEMS_PER_PAGE = 30;
+
             public int getItemCount() {
                 return ItemService.this.getCurrentItems().size();
+            }
+
+            public int getItemsPerPage() {
+                return ITEMS_PER_PAGE;
+            }
+
+            public int getNumPages() {
+                return (int) Math.ceil(getItemCount() / (double) ITEMS_PER_PAGE);
             }
         };
     }
