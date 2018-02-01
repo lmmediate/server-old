@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ru.easysales.server.dao.ItemDao;
 import ru.easysales.server.entity.Item;
 
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,7 +19,8 @@ public class ItemService {
     private ItemDao itemDao;
 
     public List<Item> getCurrentItems() {
-        return itemDao.getCurrentItems();
+        Date dateNow = new Date(System.currentTimeMillis());
+        return itemDao.findByDateInLessThanEqualAndDateOutGreaterThanEqual(dateNow, dateNow);
     }
 
     public Set<String> getCurrentCategories() {
@@ -34,7 +36,7 @@ public class ItemService {
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withIgnorePaths("id");
         Item found = itemDao.findOne(Example.of(item, matcher));
-        if(found != null){
+        if (found != null) {
             return found;
         }
         return itemDao.save(item);
