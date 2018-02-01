@@ -1,6 +1,8 @@
 package ru.easysales.server.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import ru.easysales.server.dao.ItemDao;
 import ru.easysales.server.entity.Item;
@@ -29,6 +31,12 @@ public class ItemService {
     }
 
     public Item addItem(Item item) {
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withIgnorePaths("id");
+        Item found = itemDao.findOne(Example.of(item, matcher));
+        if(found != null){
+            return found;
+        }
         return itemDao.save(item);
     }
 
