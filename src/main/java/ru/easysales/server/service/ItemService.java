@@ -34,7 +34,7 @@ public class ItemService {
 
     public Item addItem(Item item) {
         ExampleMatcher matcher = ExampleMatcher.matching()
-                .withIgnorePaths("id");
+                .withIgnorePaths("id", "crawlDate");
         Item found = itemDao.findOne(Example.of(item, matcher));
         if (found != null) {
             return found;
