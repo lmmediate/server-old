@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
-import ru.easysales.server.dao.ItemDao;
+import ru.easysales.server.repository.ItemRepository;
 import ru.easysales.server.entity.Item;
 
 import java.sql.Date;
@@ -16,11 +16,11 @@ import java.util.Set;
 public class ItemService {
 
     @Autowired
-    private ItemDao itemDao;
+    private ItemRepository itemRepository;
 
     public List<Item> getCurrentItems() {
         Date dateNow = new Date(System.currentTimeMillis());
-        return itemDao.findByDateInLessThanEqualAndDateOutGreaterThanEqual(dateNow, dateNow);
+        return itemRepository.findByDateInLessThanEqualAndDateOutGreaterThanEqual(dateNow, dateNow);
     }
 
     public Set<String> getCurrentCategories() {
@@ -35,11 +35,11 @@ public class ItemService {
     public Item addItem(Item item) {
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withIgnorePaths("id", "crawlDate");
-        Item found = itemDao.findOne(Example.of(item, matcher));
+        Item found = itemRepository.findOne(Example.of(item, matcher));
         if (found != null) {
             return found;
         }
-        return itemDao.save(item);
+        return itemRepository.save(item);
     }
 
     public Object getInfo() {
