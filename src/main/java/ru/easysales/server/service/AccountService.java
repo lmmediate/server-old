@@ -37,6 +37,9 @@ public class AccountService implements UserDetailsService {
         User user = (User) auth.getPrincipal();
         Account account = accountRepository.findByUsername(user.getUsername());
         Item item = itemRepository.getItemById(id);
+        if(item == null){
+            return;
+        }
         account.getItems().add(item);
         accountRepository.save(account);
     }
