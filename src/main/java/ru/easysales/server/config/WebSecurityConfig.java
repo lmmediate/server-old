@@ -15,11 +15,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/", "/dist/**", "/api/sales/**")
                 .permitAll()
                 .anyRequest()
-                .fullyAuthenticated();
-//                .and()
-//                .httpBasic()
-//                .and()
-//                .csrf().disable();
+                .fullyAuthenticated()
+                .and()
+                .httpBasic()
+                .and()
+                .csrf().disable();
     }
 }
 

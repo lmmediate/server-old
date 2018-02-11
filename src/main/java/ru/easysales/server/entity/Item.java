@@ -2,6 +2,7 @@ package ru.easysales.server.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "item")
@@ -33,6 +34,7 @@ public class Item {
     private String condition;
 
     //   private Image image;
+
 
     public Item() {
     }

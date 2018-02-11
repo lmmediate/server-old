@@ -3,10 +3,13 @@ package ru.easysales.server.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import ru.easysales.server.repository.ItemRepository;
 import ru.easysales.server.entity.Item;
 
+import java.security.Principal;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +23,7 @@ public class ItemService {
 
     public List<Item> getCurrentItems() {
         Date dateNow = new Date(System.currentTimeMillis());
+        // TODO: exclude accounts property
         return itemRepository.findByDateInLessThanEqualAndDateOutGreaterThanEqual(dateNow, dateNow);
     }
 
