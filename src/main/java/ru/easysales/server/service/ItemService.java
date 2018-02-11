@@ -23,7 +23,6 @@ public class ItemService {
 
     public List<Item> getCurrentItems() {
         Date dateNow = new Date(System.currentTimeMillis());
-        // TODO: exclude accounts property
         return itemRepository.findByDateInLessThanEqualAndDateOutGreaterThanEqual(dateNow, dateNow);
     }
 
