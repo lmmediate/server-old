@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import ru.easysales.server.service.AccountService;
 
+@Configuration
 public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter {
 
     @Autowired
