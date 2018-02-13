@@ -1,5 +1,7 @@
 package ru.easysales.server.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
@@ -35,6 +37,17 @@ public class Item {
 
     //   private Image image;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "items")
+    private Set<Account> accounts;
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
 
     public Item() {
     }
