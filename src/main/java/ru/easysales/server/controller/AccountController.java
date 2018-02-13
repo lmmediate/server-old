@@ -23,4 +23,14 @@ public class AccountController {
     public void addItemToShoplist(@PathVariable int id) {
         accountService.addItemToShopList(id);
     }
+
+    @DeleteMapping("/shoplist")
+    public void clearShopList(){
+        accountService.clearShopList();
+    }
+
+    @DeleteMapping("/shoplist/{id}")
+    public void deleteItemFromShopList(@PathVariable int id){
+        accountService.deleteItemFromShopList(id);
+    }
 }

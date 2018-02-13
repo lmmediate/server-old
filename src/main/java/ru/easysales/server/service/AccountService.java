@@ -27,21 +27,35 @@ public class AccountService implements UserDetailsService {
     ItemRepository itemRepository;
 
     public Set<Item> getShoplist() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) auth.getPrincipal();
-        return accountRepository.findByUsername(user.getUsername()).getItems();
+        return getCurrentAccount().getItems();
     }
 
     public void addItemToShopList(int id) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) auth.getPrincipal();
-        Account account = accountRepository.findByUsername(user.getUsername());
+        Account account = getCurrentAccount();
         Item item = itemRepository.getItemById(id);
-        if(item == null){
+        if (item == null) {
             return;
         }
         account.getItems().add(item);
         accountRepository.save(account);
+    }
+
+    public void clearShopList() {
+        Account account = getCurrentAccount();
+        account.getItems().clear();
+        accountRepository.save(account);
+    }
+
+    public void deleteItemFromShopList(int id) {
+        Account account = getCurrentAccount();
+        account.getItems().removeIf(item -> item.getId() == id);
+        accountRepository.save(account);
+    }
+
+    private Account getCurrentAccount() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+        return accountRepository.findByUsername(user.getUsername());
     }
 
     @Override
