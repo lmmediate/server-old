@@ -25,7 +25,7 @@ public class Item {
     @Column(name = "new_price")
     private Double newPrice;
     @Column(name = "discount")
-    private Double discount;
+    private String discount;
     @Column(name = "date_in")
     private Date dateIn;
     @Column(name = "date_out")
@@ -100,11 +100,11 @@ public class Item {
         this.newPrice = newPrice;
     }
 
-    public Double getDiscount() {
+    public String getDiscount() {
         return discount;
     }
 
-    public void setDiscount(Double discount) {
+    public void setDiscount(String discount) {
         this.discount = discount;
     }
 
